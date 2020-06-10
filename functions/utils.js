@@ -41,7 +41,8 @@ function validateLink(link) {
     }
     case 'Tidal': {
       const regex = new RegExp('https://tidal.com/browse/playlist/');
-      if (!regex.test(link)) {
+      const otherRegex = new RegExp('https://tidal.com/playlist/');
+      if (!(regex.test(link) || otherRegex.test(link))) {
         return { isValid: false };
       }
       return { isValid: true, platform: 'tidal' };

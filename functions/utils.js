@@ -3,6 +3,7 @@ const axios = require('axios');
 const BASE_URL = 'https://us-central1-play-mo.cloudfunctions.net/';
 const PLATFORMS = [
   { name: 'Deezer', link: 'deezer.com' },
+  { name: 'Spotify', link: 'spotify.com' },
   { name: 'Tidal', link: 'tidal.com' },
 ];
 
@@ -38,6 +39,13 @@ function validateLink(link) {
         return { isValid: false };
       }
       return { isValid: true, platform: 'deezer' };
+    }
+    case 'Spotify': {
+      const regex = new RegExp('https://open.spotify.com/playlist/');
+      if (!regex.test(link)) {
+        return { isValid: false };
+      }
+      return { isValid: true, platform: 'spotify' };
     }
     case 'Tidal': {
       const regex = new RegExp('https://tidal.com/browse/playlist/');

@@ -21,7 +21,7 @@ exports.getPlaylistInfo = functions.https.onRequest(async (req, res) => {
 
   const response = await axios.get(url, { headers });
   if (!response.data.isValid) {
-    return res.status(400).json({ message: 'Invalid link' });
+    return res.status(400).json({ message: response.data.message });
   }
   return res.status(200).json(response.data.playlist);
 });
